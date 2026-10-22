@@ -1,0 +1,11 @@
+{
+  "upstream": "https://github.com/presidio-oss/specif-ai",
+  "commit": "a084a227b0d65c009544d8af575a7a4f5c37b4be",
+  "hash_method": "SHA-256 of UTF-8 text with LF line endings",
+  "files": {
+    "LICENSE": "fda5fe6532f02d6f29bd0c0b9891a4db75865021978388942b86a169737b64c4",
+    "brd-definition.txt": "d81af523c446a2c89a7dc6f45513fc9bd5d722cb661f981b45d46e065575b355",
+    "bp-definition.txt": "422fa5538d258f85a8c74ab161bb3d0ebb9d010e58c0070d414fb2e735df2227",
+    "prd-definition.txt": "b833daee28deda8c112b1a42afa5207cf5e16dad020d06cac4122f5c59995bf6"
+  }
+}

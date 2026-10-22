@@ -1,0 +1,5 @@
+A business requirement is a detailed description of the needs and objectives that a business aims to achieve through the project. These requirements guide the project's direction,
+ensure alignment with strategic goals, manage expectations, and define metrics for success, thus providing a clear roadmap for project execution and stakeholder engagement.
+- Identify the high-level business needs and objectives of the application for solving the business problem.
+- Consider the business context and target audience/ users of the application.
+- Focus on the strategic outcomes and benefits for the business objectives.

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="csrf" content="__CSRF__" />
+    <title>Finance Product Agent · 财务产品工作台</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <aside>
+      <div class="brand">
+        <span class="mark">F</span>
+        <div>Finance Product<span>AGENT / 个人工作台</span></div>
+      </div>
+      <nav id="nav" aria-label="工作步骤"></nav>
+      <div class="local">
+        <i></i> 数据仅存本机<small>没有云模型 · 没有遥测</small>
+      </div>
+    </aside>
+    <div class="shell">
+      <header>
+        <div>
+          <span class="eyebrow">FINANCE DIGITALIZATION</span>
+          <p id="project-name">从财务问题，到可验收的产品</p>
+        </div>
+        <div class="header-actions">
+          <span id="version" class="badge">未保存</span
+          ><button id="reload">重新载入</button
+          ><a href="/api/export" class="button" id="export">导出交付包</a>
+        </div>
+      </header>
+      <main>
+        <div class="heading">
+          <div>
+            <span class="eyebrow" id="step-label">WORKSPACE</span>
+            <h1 id="page-title">项目概览</h1>
+            <p id="subtitle"></p>
+          </div>
+          <button id="add-item" class="primary" hidden>添加条目</button>
+        </div>
+        <div id="message" role="status" aria-live="polite" hidden></div>
+        <div id="content"></div>
+      </main>
+      <footer>
+        <div>
+          <label
+            >操作者<input
+              id="actor"
+              value="产品经理"
+              aria-label="操作者" /></label
+          ><label class="reason"
+            >本次修改原因<input
+              id="reason"
+              placeholder="例如：澄清含税口径，补充超限场景"
+              aria-label="修改原因"
+          /></label>
+        </div>
+        <button id="save" class="primary">保存新版本</button>
+      </footer>
+    </div>
+  </body>
+</html>

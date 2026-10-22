@@ -1,0 +1,20 @@
+test_actual_upstream_context_and_untrusted_boundary (test_artifacts_ai.ArtifactTests.test_actual_upstream_context_and_untrusted_boundary) ... ok
+test_ai_loopback_no_proxy_and_draft_validation (test_artifacts_ai.ArtifactTests.test_ai_loopback_no_proxy_and_draft_validation) ... ok
+test_ai_never_connects_when_disabled_or_sensitive (test_artifacts_ai.ArtifactTests.test_ai_never_connects_when_disabled_or_sensitive) ... ok
+test_bundle_and_injection (test_artifacts_ai.ArtifactTests.test_bundle_and_injection) ... ok
+test_cloud_and_renamed_remote_models_blocked_before_prompt (test_artifacts_ai.ArtifactTests.test_cloud_and_renamed_remote_models_blocked_before_prompt) ... ok
+test_export_cannot_include_future_revision (test_artifacts_ai.ArtifactTests.test_export_cannot_include_future_revision) ... ok
+test_new_project_never_invents_financial_policy (test_artifacts_ai.ArtifactTests.test_new_project_never_invents_financial_policy) ... ok
+test_approval_conflict_history_and_invalidation (test_core.DomainTests.test_approval_conflict_history_and_invalidation) ... ok
+test_clarification_and_evidence_gate (test_core.DomainTests.test_clarification_and_evidence_gate) ... ok
+test_cross_requirement_false_trace_is_rejected (test_core.DomainTests.test_cross_requirement_false_trace_is_rejected) ... ok
+test_invalid_references_duplicates_and_coverage (test_core.DomainTests.test_invalid_references_duplicates_and_coverage) ... ok
+test_money_boundary_rounding_and_currency (test_core.DomainTests.test_money_boundary_rounding_and_currency) ... ok
+test_transitive_impact (test_core.DomainTests.test_transitive_impact) ... ok
+test_csrf_origin_host_and_path_protection (test_http.HttpTests.test_csrf_origin_host_and_path_protection) ... ok
+test_real_http_save_export_conflict_and_model_disabled (test_http.HttpTests.test_real_http_save_export_conflict_and_model_disabled) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 1.458s
+
+OK

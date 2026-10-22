@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "title": "差旅报销审批优化（完全合成演示）",
+  "classification": "synthetic",
+  "sources": [
+    {
+      "id": "SRC-1",
+      "title": "合成财务访谈",
+      "notes": "模拟需求：报销金额超过10000.00 CNY需财务主管复核。此阈值仅为演示，不代表任何真实制度。"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "title": "大额报销复核",
+      "description": "员工提交报销后按金额分派复核，提交人与审批人分离。",
+      "source_ids": ["SRC-1"],
+      "owner": "合成财务负责人",
+      "metric": "合成验收中金额边界路由正确率100%"
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-1",
+      "requirement_id": "REQ-1",
+      "question": "10000元整是否进入主管复核？币种和金额口径是什么？",
+      "answer": "合成约定：等于10000.00不升级；仅CNY含税总额，先四舍五入到分。"
+    }
+  ],
+  "processes": [
+    {
+      "id": "FLOW-1",
+      "title": "报销审批流程",
+      "requirement_ids": ["REQ-1"],
+      "rule_ids": ["RULE-1"],
+      "steps": [
+        {
+          "id": "STEP-1",
+          "role": "员工",
+          "input": "合成报销单",
+          "action": "提交申请",
+          "output": "待审核单据",
+          "next": ["STEP-2"]
+        },
+        {
+          "id": "STEP-2",
+          "role": "财务审核员",
+          "input": "待审核单据与RULE-1",
+          "action": "按金额判断并分派；超阈值交主管，否则普通复核",
+          "output": "分派结果",
+          "next": []
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "RULE-1",
+      "title": "大额复核路由",
+      "requirement_ids": ["REQ-1"],
+      "basis": "SRC-1：模拟制度，不是真实财务政策",
+      "owner": "合成财务负责人",
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-12-31",
+      "currency": "CNY",
+      "amount_basis": "含税总额",
+      "rounding": "ROUND_HALF_UP_2",
+      "segregation": "提交人与最终审批人必须不同",
+      "exception": "非CNY、负数、无金额或日期超适用期转人工",
+      "operator": ">",
+      "threshold": "10000.00",
+      "when_true": "财务主管复核",
+      "when_false": "普通财务复核"
+    }
+  ],
+  "prd": [
+    {
+      "id": "PRD-1",
+      "title": "报销金额分派",
+      "requirement_ids": ["REQ-1"],
+      "process_ids": ["FLOW-1"],
+      "rule_ids": ["RULE-1"],
+      "description": "提交后按RULE-1计算路由；异常转人工，不自动记账或付款。",
+      "acceptance": "金额10000.00普通复核，10000.01主管复核；非CNY转人工。"
+    }
+  ],
+  "screens": [
+    {
+      "id": "UI-1",
+      "title": "报销申请",
+      "prd_ids": ["PRD-1"],
+      "fields": ["报销金额（CNY含税）", "费用说明", "提交人"],
+      "actions": [{ "label": "提交并查看复核", "target": "UI-2" }]
+    },
+    {
+      "id": "UI-2",
+      "title": "财务复核",
+      "prd_ids": ["PRD-1"],
+      "fields": ["金额与规则依据", "审批意见", "职责分离校验"],
+      "actions": [{ "label": "返回申请", "target": "UI-1" }]
+    }
+  ],
+  "uats": [
+    {
+      "id": "UAT-1",
+      "title": "等于阈值",
+      "requirement_ids": ["REQ-1"],
+      "rule_ids": ["RULE-1"],
+      "screen_ids": ["UI-1", "UI-2"],
+      "input": {
+        "amount": "10000.00",
+        "currency": "CNY",
+        "date": "2026-10-21"
+      },
+      "expected": "普通财务复核",
+      "actual": "",
+      "status": "pending",
+      "executor": "",
+      "evidence": ""
+    },
+    {
+      "id": "UAT-2",
+      "title": "高于阈值",
+      "requirement_ids": ["REQ-1"],
+      "rule_ids": ["RULE-1"],
+      "screen_ids": ["UI-1", "UI-2"],
+      "input": {
+        "amount": "10000.01",
+        "currency": "CNY",
+        "date": "2026-10-21"
+      },
+      "expected": "财务主管复核",
+      "actual": "",
+      "status": "pending",
+      "executor": "",
+      "evidence": ""
+    },
+    {
+      "id": "UAT-3",
+      "title": "低于阈值",
+      "requirement_ids": ["REQ-1"],
+      "rule_ids": ["RULE-1"],
+      "screen_ids": ["UI-1"],
+      "input": { "amount": "9999.99", "currency": "CNY", "date": "2026-10-21" },
+      "expected": "普通财务复核",
+      "actual": "",
+      "status": "pending",
+      "executor": "",
+      "evidence": ""
+    }
+  ]
+}
